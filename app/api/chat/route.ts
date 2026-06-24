@@ -9,6 +9,7 @@ import { createClient } from '@/lib/supabase/server';
 import { google } from '@ai-sdk/google';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
 export async function POST(req: Request) {
 
   // Get the current user session via cookies
