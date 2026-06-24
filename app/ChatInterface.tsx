@@ -24,6 +24,7 @@ export default function Chat() {
   const [pdfAttachment, setPdfAttachment] = useState<PdfAttachment | null>(null);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [startedChat, setStartedChat] = useState(false);
 
 
   // PDF UPLOAD — uploads file to Supabase Storage and stores the URL
@@ -91,6 +92,7 @@ export default function Chat() {
 
     setInput('');
     setPdfAttachment(null);
+    setStartedChat(true);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -134,6 +136,18 @@ export default function Chat() {
     <div className="flex flex-col w-full max-w-md justify-around">
       <div className="relative">
       <div className="flex h-[80vh] overflow-y-auto scrollbar-thin scrollbar-track-background flex-col  gap-4">
+      
+      {startedChat || isStreaming ? null : (
+        <div className="relative flex flex-col justify-center items-center">
+        <div className="-z-1 absolute w-[19rem] h-[3rem] blur-2xl mx-auto bg-radial from-pink-400 from-50% to-fuchsia-700">
+        </div>
+        <div className="flex flex-col justify-center items-center text-center gap-2 h-[50vh]">
+          <h2 className='text-stone-200 text-4xl font-bold'>Ready When You Are</h2>
+          <p className='text-stone-300'>Ask me to manage you records, analyze pdf file and check your location's current weather!</p>
+        </div>
+        </div>
+      )}
+
       {messages.map(message => (
         <div key={message.id} className="">
           {message.parts.map((part, i) => {
