@@ -131,9 +131,9 @@ export default function Chat() {
   }, [messages, router]);
 
   return (
-    <div className="flex flex-col w-full max-w-md gap-4 justify-around">
+    <div className="flex flex-col w-full max-w-md justify-around">
       <div className="relative">
-      <div className="flex h-[80vh] overflow-y-auto scrollbar-hide flex-col gap-4">
+      <div className="flex h-[80vh] overflow-y-auto scrollbar-thin scrollbar-track-background flex-col  gap-4">
       {messages.map(message => (
         <div key={message.id} className="">
           {message.parts.map((part, i) => {
@@ -144,7 +144,7 @@ export default function Chat() {
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     key={`${message.id}-${i}`}
                   >
-                    <p className={`${message.role === 'user' ? 'text-right bg-stone-800' : 'text-stone-900 border bg-stone-100'} rounded-2xl px-[1rem] py-[0.75rem] leading-[1.25rem] max-w-[24rem]`}>
+                    <p className={`${message.role === 'user' ? 'text-right text-stone-100 bg-stone-800' : 'text-stone-900 border bg-stone-100'} rounded-2xl px-[1rem] py-[0.75rem] leading-[1.25rem] max-w-[24rem]`}>
                       {part.text}
 
                       {/* ============================================================
@@ -165,7 +165,7 @@ export default function Chat() {
               case 'tool-convertFahrenheitToCelsius':
                 return (
                   <pre key={`${message.id}-${i}`}>
-                    {JSON.stringify(part, null, 2)}
+                    {/* {JSON.stringify(part, null, 2)} */}
                   </pre>
                 );
             }
@@ -187,7 +187,7 @@ export default function Chat() {
       <div ref={messagesEndRef} />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-4 pointer-events-none bg-gradient-to-t from-stone-950 to-transparent">
+      <div className="absolute bottom-0 left-0 right-0 h-2 pointer-events-none bg-gradient-to-t dark:from-stone-950 to-transparent from-white to-transparent">
       </div>
 
     </div>
@@ -219,16 +219,17 @@ export default function Chat() {
           </div>
         )}
 
-        <div className="fixed bottom-0 w-full max-w-md mb-8 flex items-center gap-2 border border-zinc-500 rounded-full shadow-xl px-[1.2rem] py-[0.5rem] dark:bg-zinc-900">
+        <div className="w-full max-w-md flex items-center gap-3 border border-zinc-500 rounded-full shadow-xl px-[0.875rem] py-[0.5rem] dark:bg-zinc-900">
 
           {/* PDF UPLOAD — paperclip button, disabled while uploading or streaming */}
-          <label className={`cursor-pointer transition ${uploading || isBusy ? 'text-zinc-600 cursor-not-allowed' : 'text-zinc-400 hover:text-white'}`}>
+          <label className={`cursor-pointer text-center transition w-[1.2rem]
+            ${uploading || isBusy ? 'text-zinc-600 cursor-not-allowed' : 'text-zinc-400 hover:text-white'}`}>
             {uploading ? '⏳' : '+'}
             <input
               ref={fileInputRef}
               type="file"
               accept="application/pdf"
-              className="hidden"
+              className="hidden "
               disabled={uploading || isBusy}
               onChange={handlePdfChange}
             />
@@ -248,9 +249,9 @@ export default function Chat() {
           <button
             type="submit"
             disabled={uploading || isBusy}
-            className="text-zinc-400 hover:text-white transition disabled:opacity-40"
+            className="text-zinc-400 bg-stone-800 w-[2rem] h-[2rem] rounded-full hover:text-white transition disabled:opacity-40"
           >
-            {isBusy ? '⏳' : '➤'}
+            {isBusy ? '⏳' : '↑'}
           </button>
           {/* ============================================================ */}
 

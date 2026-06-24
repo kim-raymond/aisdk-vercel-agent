@@ -4,20 +4,19 @@ export default async function LoginPage(props: { searchParams: Promise<{ error?:
   const searchParams = await props.searchParams
   
   return (
-    <div style={{ maxWidth: '400px', margin: '100px auto', fontFamily: 'sans-serif' }}>
-      <h1>Sign In to AI Agent</h1>
-      <form action={login} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        <label htmlFor="email">Email:</label>
-        <input id="email" name="email" type="email" required style={{ padding: '8px' }} />
-        
-        <label htmlFor="password">Password:</label>
-        <input id="password" name="password" type="password" required style={{ padding: '8px' }} />
+    <div className='flex flex-col font-poppins items-center justify-center min-h-screen gap-[2rem]'>
+      <h1 className="font-bold text-[2rem]">Sign In to AI Agent</h1>
+      <form action={login} className='flex flex-col gap-[1rem] px-[2rem] w-[28rem] rounded-lg'>
+        {/* <label htmlFor="email">Email:</label> */}
+        <input id="email" name="email" type="email" required placeholder='Email' className='border border-stone-600 px-[1.5rem] py-[1rem] rounded-full' />
+        {/* <label htmlFor="password">Password:</label> */}
+        <input id="password" name="password" type="password" required placeholder='Password' className='border border-stone-600 px-[1.5rem] py-[1rem] rounded-full'  />
         
         {searchParams.error && (
-          <p style={{ color: 'red', fontSize: '14px' }}>{searchParams.error}</p>
+          <p className='text-red-500 text-sm'>{searchParams.error}</p>
         )}
         
-        <button type="submit" style={{ padding: '10px', background: '#0070f3', color: 'white', border: 'none', cursor: 'pointer' }}>
+        <button type="submit" className='bg-blue-500 cursor-pointer rounded-full px-[1.8rem] py-[1rem] w-max-[4rem]'>
           Log In
         </button>
       </form>
