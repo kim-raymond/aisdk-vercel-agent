@@ -193,8 +193,8 @@ export default function Chat() {
             <div className="relative flex flex-col justify-center items-center">
               <div className="-z-1 absolute w-[19rem] h-[3rem] blur-2xl mx-auto bg-radial from-pink-400 from-50% to-fuchsia-700"></div>
               <div className="flex flex-col justify-center items-center text-center gap-2 h-[50vh]">
-                <h2 className='text-stone-200 text-4xl font-bold'>Ready When You Are</h2>
-                <p className='text-stone-300'>Ask me to manage your records, analyze PDF files, and check your location's current weather!</p>
+                <h2 className='dark:text-stone-200 text-stone-700 text-4xl font-bold'>Ready When You Are</h2>
+                <p className='text-stone-600 dark:text-stone-300'>Ask me to manage your records, analyze PDF files, and check your location's current weather!</p>
               </div>
             </div>
           )}
