@@ -38,10 +38,38 @@ export async function POST(req: Request) {
 
   console.log('Found PDF URLs in messages:', pdfUrls);
   
+  const parseStorageUrl = (url: string) => {
+    try {
+      const parsed = new URL(url);
+      const segments = parsed.pathname.split('/').filter(Boolean);
+      if (segments[0] === 'storage' && segments[1] === 'v1' && segments[2] === 'object' && segments[3] === 'public') {
+        const bucket = segments[4];
+        const path = segments.slice(5).join('/');
+        return { bucket, path };
+      }
+    } catch {
+      return null;
+    }
+    return null;
+  };
+
   // Fetch all PDFs in parallel and build a URL → base64 map
   const pdfMap = new Map<string, string>();
   await Promise.all(
     pdfUrls.map(async (url) => {
+      const storageInfo = parseStorageUrl(url);
+      if (storageInfo) {
+        const { data, error } = await supabase.storage
+          .from(storageInfo.bucket)
+          .download(storageInfo.path);
+        if (error || !data) {
+          throw new Error(`Failed to download PDF from Supabase Storage: ${url} ${error?.message ?? ''}`);
+        }
+        const buffer = await data.arrayBuffer();
+        pdfMap.set(url, Buffer.from(buffer).toString('base64'));
+        return;
+      }
+
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Failed to fetch PDF from storage: ${url}`);
       const buffer = await res.arrayBuffer();
