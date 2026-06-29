@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 
+
 type PdfAttachment = {
   name: string;
   url: string;
@@ -186,7 +187,8 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col w-full max-w-md justify-around">
-      <div className="relative">
+
+      <div className="relative ">
         <div className="flex h-[80vh] overflow-y-auto scrollbar-thin scrollbar-track-background flex-col gap-4">
           
           {startedChat || isStreaming ? null : (
