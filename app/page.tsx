@@ -4,21 +4,20 @@ import { Suspense} from "react";
 import ChatInterface from "./ChatInterface"; 
 import Instruments from "./instruments";
 
-
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser()
-
-  // If no user exists in cookies, kick them to login
-  if (!user) {
-    redirect('/login')
-  }
-
   interface Instrument{
     id:string,
     name:string,
     status:string,
     quantity:number,
     created_at:string,
+  }
+  export default async function Home() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser()
+
+  // If no user exists in cookies, kick them to login
+  if (!user) {
+    redirect('/login')
   }
 
   const { data: instruments, error } = await supabase.from('instruments').select() as {data: Instrument[] | null, error: any};
@@ -29,7 +28,6 @@ import Instruments from "./instruments";
   }
 
 
-export default function Home() {
   return (
     <div className="flex relative justify-center items-center w-full py-12 px-4 gap-4 min-h-screen font-poppins">
 
