@@ -3,6 +3,7 @@ import { useChat } from '@ai-sdk/react';
 import { useEffect, useState, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import {motion} from 'motion/react';
 
 
 type PdfAttachment = {
@@ -185,6 +186,8 @@ export default function Chat() {
     }
   }, [messages, router]);
 
+  // for motion section
+  const header = `Ready When You Are`.split(/(\s+)/);
   return (
     <div className="flex flex-col w-full max-w-md justify-around">
 
@@ -194,9 +197,28 @@ export default function Chat() {
           {startedChat || isStreaming ? null : (
             <div className="relative flex flex-col justify-center items-center">
               <div className="-z-1 absolute w-[19rem] h-[3rem] blur-2xl mx-auto bg-radial from-pink-400 from-50% to-fuchsia-700"></div>
-              <div className="flex flex-col justify-center items-center text-center gap-2 h-[50vh]">
-                <h2 className='dark:text-stone-200 text-stone-700 text-4xl font-bold'>Ready When You Are</h2>
-                <p className='text-stone-600 dark:text-stone-300'>Ask me to manage your records, analyze PDF files, and check your location's current weather!</p>
+              <div className="flex flex-col justify-center items-center text-center gap-4 h-[50vh]">
+                {/* <h2 className='dark:text-stone-200 text-stone-700 text-4xl font-bold'>Ready When You Are</h2> */}
+                <div className="flex justify-center ">
+                {header.map((l,i)=>(
+                  <motion.h2 
+                  initial={{opacity:0,y:10}}
+                  animate={{opacity:1,y:0}}
+                  transition={{delay:i*0.05,duration:0.1,ease:'easeIn'}}
+                    key={i}
+                    className=" text-[2.5rem] font-bold dark:text-stone-200 text-stone-700 text-4xl"
+                  >
+                    {l === " "? "\u00A0": l}
+                  </motion.h2>
+                ))}
+                </div>
+                <motion.p 
+                initial={{opacity:0,}}
+                animate={{opacity:1}}
+                transition={{delay:0.5,duration:0.1,ease:'easeIn'}}
+                className='text-stone-600 dark:text-stone-300'>
+                  Ask me to manage your records, analyze PDF files, and check your location's current weather!
+                </motion.p>
               </div>
             </div>
           )}

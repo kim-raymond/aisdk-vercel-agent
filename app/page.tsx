@@ -11,6 +11,8 @@ import Instruments from "./instruments";
     quantity:number,
     created_at:string,
   }
+  export const dynamic = 'force-dynamic';
+
   export default async function Home() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser()
@@ -21,7 +23,6 @@ import Instruments from "./instruments";
   }
 
   const { data: instruments, error } = await supabase.from('instruments').select() as {data: Instrument[] | null, error: any};
-
   // Good practice: debug if there's an RLS or schema issue
   if (error) {
     console.error("Supabase Error:", error.message)
@@ -32,7 +33,7 @@ import Instruments from "./instruments";
     <div className="flex relative justify-center items-center w-full py-12 px-4 gap-4 min-h-screen font-poppins">
 
       <div className="absolute left-0 top-0 bg-stone-900 
-      border border-stone-800 rounded-xl h-screen p-4 text-stone-50">
+      border border-stone-800 rounded-xl h-screen p-4 text-stone-50 ">
         <Suspense fallback={<div className="text-sm text-stone-500">Loading instruments database...</div>}>
           <Instruments instruments={instruments ?? []} />
         </Suspense>
