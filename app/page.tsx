@@ -31,7 +31,7 @@ import Instruments from "./instruments";
 
 
   return (
-    <div className="flex relative justify-center items-center w-full py-12 px-4 gap-4 min-h-screen font-poppins">
+    <div className="flex  relative justify-center items-center w-full min-h-screen font-poppins">
 
       <div className="absolute left-0 top-0 bg-stone-900 
       border border-stone-800 rounded-xl h-screen p-4 text-stone-50 ">

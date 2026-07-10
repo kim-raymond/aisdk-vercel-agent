@@ -187,8 +187,9 @@ export default function Chat() {
 
   // for motion section
   const header = `Your AI Database Manager`.split(/(\s+)/);
+
   return (
-    <div className="flex flex-col w-full max-w-md justify-around">
+    <div className="flex flex-col w-full max-w-xl justify-around ">
 
       <div className="relative ">
         <div className="flex h-[80vh] overflow-y-auto scrollbar-thin scrollbar-track-background flex-col gap-4">
@@ -215,7 +216,7 @@ export default function Chat() {
                 initial={{opacity:0,}}
                 animate={{opacity:1}}
                 transition={{delay:0.5,duration:0.1,ease:'easeIn'}}
-                className='text-[1.25rem] text-stone-600 dark:text-stone-300'>
+                className='text-[1rem] text-stone-600 dark:text-stone-300'>
                   Add, update, delete, and search records — just by chatting.
                   Upload a PDF and I'll extract the data automatically.
                 </motion.p>
