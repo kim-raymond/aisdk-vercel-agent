@@ -205,7 +205,7 @@ export default function Chat() {
                   animate={{opacity:1,y:0}}
                   transition={{delay:i*0.05,duration:0.1,ease:'easeIn'}}
                     key={i}
-                    className=" text-[2.5rem] font-bold dark:text-stone-200 text-stone-700 text-4xl"
+                    className=" text-[2.25rem] font-bold dark:text-stone-200 text-stone-700 text-4xl"
                   >
                     {l === " "? "\u00A0": l}
                   </motion.h2>
@@ -215,7 +215,7 @@ export default function Chat() {
                 initial={{opacity:0,}}
                 animate={{opacity:1}}
                 transition={{delay:0.5,duration:0.1,ease:'easeIn'}}
-                className='text-stone-600 dark:text-stone-300'>
+                className='text-[1.25rem] text-stone-600 dark:text-stone-300'>
                   Add, update, delete, and search records — just by chatting.
                   Upload a PDF and I'll extract the data automatically.
                 </motion.p>
