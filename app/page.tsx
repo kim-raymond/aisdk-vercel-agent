@@ -18,9 +18,10 @@ import Instruments from "./instruments";
   const { data: { user } } = await supabase.auth.getUser()
 
   // If no user exists in cookies, kick them to login
-  if (!user) {
-    redirect('/login')
-  }
+  // disabled for now, as we are not using auth yet.
+  // if (!user) {
+  //   redirect('/login')
+  // }
 
   const { data: instruments, error } = await supabase.from('instruments').select() as {data: Instrument[] | null, error: any};
   // Good practice: debug if there's an RLS or schema issue
