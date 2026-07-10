@@ -14,12 +14,12 @@ export async function POST(req: Request) {
 
   // Get the current user session via cookies
   const supabase = await createClient();
-  const { data: { user }, error } = await supabase.auth.getUser();
+  // const { data: { user }, error } = await supabase.auth.getUser();
 
-  // Block the request if not authenticated
-  if (error || !user) {
-    return new Response('Unauthorized', { status: 401 });
-  }
+  // // Block the request if not authenticated
+  // if (error || !user) {
+  //   return new Response('Unauthorized', { status: 401 });
+  // }
 
   const { messages }: { messages: UIMessage[] } = await req.json();
 
