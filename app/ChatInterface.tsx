@@ -186,7 +186,7 @@ export default function Chat() {
   }, [messages, router]);
 
   // for motion section
-  const header = `Ready When You Are`.split(/(\s+)/);
+  const header = `Your AI Database Manager`.split(/(\s+)/);
   return (
     <div className="flex flex-col w-full max-w-md justify-around">
 
@@ -216,7 +216,8 @@ export default function Chat() {
                 animate={{opacity:1}}
                 transition={{delay:0.5,duration:0.1,ease:'easeIn'}}
                 className='text-stone-600 dark:text-stone-300'>
-                  Ask me to manage your records, analyze PDF files!
+                  Add, update, delete, and search records — just by chatting.
+                  Upload a PDF and I'll extract the data automatically.
                 </motion.p>
               </div>
             </div>
