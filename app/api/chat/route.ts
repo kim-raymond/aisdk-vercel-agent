@@ -23,10 +23,8 @@ export async function POST(req: Request) {
 
   const { messages }: { messages: UIMessage[] } = await req.json();
 
-  // ============================================================
   // PDF FIX — pre-fetch all PDF parts before converting messages
   // since convertDataPart does not support async callbacks
-  // ============================================================
   type PdfData = { url: string; name: string };
 
   // Collect all PDF URLs across all messages
@@ -76,10 +74,10 @@ export async function POST(req: Request) {
       pdfMap.set(url, Buffer.from(buffer).toString('base64'));
     })
   );
-  // ============================================================
 
   const result = streamText({
     model: google('gemini-2.5-flash'),
+
     // PDF FIX — convertDataPart is sync, looks up pre-fetched base64
     messages: await convertToModelMessages(messages, {
 

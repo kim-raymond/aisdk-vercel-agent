@@ -67,7 +67,6 @@ export default function Chat() {
       await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         activeXhrRef.current = xhr; // Store instance reference globally for the abort controller
-
         xhr.open('POST', uploadUrl, true);
 
         // Required API Authentication Headers
@@ -104,7 +103,7 @@ export default function Chat() {
 
       setPdfAttachment({ name: file.name, url: publicUrl });
       console.timeEnd('pdf-upload');
-    } catch (err: any) {
+      } catch (err: any) {
       // Avoid popups when users explicitly hit cancel
       if (err.message !== 'Upload canceled by user') {
         console.error('PDF upload failed:', err);
