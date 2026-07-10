@@ -314,7 +314,7 @@ export default function Chat() {
           </div>
         )}
 
-        <div className="w-full max-w-md flex items-center gap-3 border border-zinc-500 rounded-full shadow-xl px-[0.875rem] py-[0.5rem] dark:bg-zinc-900">
+        <div className="w-full max-w-full flex items-center gap-3 border border-zinc-500 rounded-full shadow-xl px-[0.875rem] py-[0.5rem] dark:bg-zinc-900">
           <label className={`cursor-pointer text-center transition w-[1.2rem] font-bold text-lg
             ${uploading || isBusy ? 'text-zinc-600 cursor-not-allowed' : 'text-zinc-400 hover:text-white'}`}>
             {uploading ? '⏳' : '+'}
