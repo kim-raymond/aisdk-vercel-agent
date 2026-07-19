@@ -345,6 +345,12 @@ export default function Chat() {
           </button>
         </div>
       </form>
+
+      <div className="flex justify-center items-center text-sm text-stone-500 mt-4">
+        <p>by kim <a href="https://github.com/kim-raymond" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-blue-300 underline">
+          magallanes
+        </a></p>
+      </div>
     </div>
   );
 }
